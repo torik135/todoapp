@@ -4,16 +4,6 @@ import sorting from '../utils/sorting';
 
 import { useTodos, useActivity } from '../services/services';
 
-// import useActivity from '../services/useActivity';
-// import ModalDelete from '../components/ModalDelete';
-// import FormModal from '../components/FormModal';
-// import Alert from '../components/Alert';
-// import BackButton from '../components/BackButton';
-// import PageTitle from '../components/PageTitle'
-// import TodoItem from '../components/TodoItem'
-// import TodoSorter from "../components/TodoSorter"
-// import AddButton from '../components/AddButton'
-
 import {
   Alert,
   ButtonAdd,
@@ -42,14 +32,25 @@ function Todo() {
   const Activity = useActivity();
   let params = useParams();
 
-  useEffect(async () => {
-    const data = await Todo.get(params.id);
-    setActivityTitle(data.title);
-    setTodos(data.todo_items);
+  useEffect(() => {
+    let isMounted = true;
+
+    const getData = async () => {
+      try {
+        const data = await Todo.get(params.id);
+        isMounted && setActivityTitle(data.title);
+        isMounted && setTodos(data.todo_items);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getData();
 
     return () => {
-      setActivityTitle('');
-      setTodos([]);
+      // setActivityTitle('');
+      // setTodos([]);
+      isMounted = false;
     };
   }, []);
 
@@ -76,7 +77,8 @@ function Todo() {
         title: name,
         priority,
       });
-      setTodos((todo) => [data, ...todo]);
+      //setTodos((todo) => [...todo]); // local
+      setTodos((todo) => [data, ...todo]); // online
     }
     setOpenFormModal(false);
   };
@@ -161,7 +163,7 @@ function Todo() {
           </Suspense>
         </div>
       </div>
-      {todos.length ? (
+      {todos?.length ? (
         <div>
           {todos.map((todo) => (
             <TodoItem

@@ -1,5 +1,6 @@
-const BASE_URL = 'https://todo.api.devcode.gethired.id';
-const EMAIL = 'riqibrekele%40gmail.com';
+// const BASE_URL = 'https://todo.api.devcode.gethired.id';
+const BASE_URL = 'http://localhost:8000';
+const EMAIL = 'riqibrekele@gmail.com';
 
 function useActivity() {
   const baseUrl = `${BASE_URL}/activity-groups`;

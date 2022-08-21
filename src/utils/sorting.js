@@ -16,6 +16,8 @@ function sorting(data, value) {
       return data.sort((a, b) =>
         a.is_active < b.is_active ? 1 : a.is_active > b.is_active ? -1 : 0,
       );
+    default:
+      return data.sort((a, b) => b.id - a.id);
   }
 }
 

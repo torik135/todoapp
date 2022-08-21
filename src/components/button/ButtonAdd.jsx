@@ -1,19 +1,15 @@
 import { memo } from 'react';
+import { BsPlusLg as PlusIcon } from 'react-icons/bs';
 
 const ButtonAdd = memo((props) => {
   const { onClick, dataCy } = props;
   return (
     <button
       onClick={onClick}
-      className='flex items-center gap-3 px-8 py-3 text-xl font-semibold rounded-full bg-primary text-white'
+      className='flex items-center gap-3 px-8 py-3 text-xl font-semibold rounded-full bg-primary text-white hover:scale-90'
       data-cy={dataCy}
     >
-      <svg className='w-6 h-6' viewBox='0 0 24 24'>
-        <path
-          d='M19 12.998h-6v6h-2v-6H5v-2h6v-6h2v6h6z'
-          fill='currentColor'
-        ></path>
-      </svg>
+      <PlusIcon className='w-6 h-6' />
       Tambah
     </button>
   );

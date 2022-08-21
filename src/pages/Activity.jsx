@@ -1,10 +1,5 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { useActivity } from '../services/services';
-
-// import { ModalDelete } from '../components/ModalDelete';
-// import {Alert} from '../components/Alert';
-// import {AcCard} from '../components/AcCard';
-// import {ButtonAdd} from '../components/AddButton'
 import { ModalDelete, Alert, ActivityCard, ButtonAdd } from '../components';
 
 const ActivityEmpty = lazy(() =>
@@ -18,19 +13,25 @@ function Activity() {
   const Activity = useActivity();
 
   useEffect(async () => {
-    await getActivity();
+    try {
+      await getActivity();
+    } catch (err) {
+      console.log(err);
+    }
     return () => setActivity([]);
   }, []);
 
   const getActivity = async () => {
     const data = await Activity.get();
-    setActivity(data.data);
+    // setActivity(data.data); //online
+    setActivity(data);
+
   };
 
   const createActivity = async () => {
     await Activity.create({
       title: 'New Activity',
-      email: 'hudadamar21@gmail.com',
+      email: 'riqibrekele@gmail.com',
     });
     getActivity();
   };
@@ -59,11 +60,11 @@ function Activity() {
           <ButtonAdd onClick={createActivity} dataCy='activity-add-button' />
         </Suspense>
       </div>
-      {activity.length ? (
+      {activity?.length ? (
         <div className='grid gap-3 pb-10 grid-cols-4'>
           {activity.map((ac, index) => (
             <ActivityCard
-              key={ac.id}
+              key={Math.random()}
               index={index}
               onDelete={(e) => openDeleteModal(e, ac)}
               {...ac}

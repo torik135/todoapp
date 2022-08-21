@@ -1,10 +1,10 @@
 import { memo } from 'react';
-
+import img from '../../assets/img/activity-empty-state.webp'
 const ActivityEmpty = memo(() => {
   return (
     <div className='flex justify-center' data-cy='activity-empty-state'>
       <img
-        src='https://cdn.statically.io/img/todo-app-b80c4.web.app/w=600,h=600/assets/activity-empty-state.ae3dae85.webp'
+        src={img}
         alt='activity empty'
         width='600'
         height='600'
@@ -13,4 +13,4 @@ const ActivityEmpty = memo(() => {
   );
 });
 
-export { ActivityEmpty };
+export default ActivityEmpty;
