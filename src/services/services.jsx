@@ -1,5 +1,5 @@
-// const BASE_URL = 'https://todo.api.devcode.gethired.id';
-const BASE_URL = 'http://localhost:8000';
+const BASE_URL = 'https://todo.api.devcode.gethired.id';
+// const BASE_URL = 'http://localhost:8000';
 const EMAIL = 'riqibrekele@gmail.com';
 
 function useActivity() {

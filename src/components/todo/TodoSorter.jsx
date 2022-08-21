@@ -1,48 +1,11 @@
 import { sorts } from '../../data/data';
 import { Listbox } from '@headlessui/react';
 import { memo } from 'react';
+import { BiSort as SortIcon } from 'react-icons/bi';
+import { AiOutlineCheck as CheckIcon } from 'react-icons/ai';
 
 const TodoSorter = memo((props) => {
   const { selected, getValue } = props;
-
-  const sortIcon = (
-    <svg
-      width='22'
-      height='18'
-      viewBox='0 0 22 18'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <path
-        d='M2 6L6 2M6 2L10 6M6 2V16'
-        stroke='#888888'
-        strokeWidth='1.5'
-        strokeLinecap='square'
-      />
-      <path
-        d='M20 12L16 16M16 16L12 12M16 16V2'
-        stroke='#888888'
-        strokeWidth='1.5'
-        strokeLinecap='square'
-      />
-    </svg>
-  );
-
-  const checkedIcon = (
-    <svg
-      width='18'
-      height='18'
-      viewBox='0 0 18 18'
-      fill='none'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <path
-        d='M3.75 9L7.5 12.75L15 5.25'
-        stroke='#4A4A4A'
-        strokeLinecap='square'
-      />
-    </svg>
-  );
 
   return (
     <Listbox
@@ -55,7 +18,7 @@ const TodoSorter = memo((props) => {
         className='h-14 w-14 rounded-full border border-gray-300 grid place-items-center'
         data-cy='todo-sort-button'
       >
-        {sortIcon}
+        <SortIcon className='w-7 h-7' />
       </Listbox.Button>
       <Listbox.Options
         className='absolute top-full mt-2 bg-white grid py-2 w-56 rounded-md shadow-lg'
@@ -77,7 +40,7 @@ const TodoSorter = memo((props) => {
               <i data-cy='sort-selection-icon'>{sort.icon}</i>
               <p data-cy='sort-selection-title'>{sort.name}</p>
             </div>
-            {sort.name === selected && checkedIcon}
+            {sort.name === selected && <CheckIcon className='w-4 h-4' />}
           </Listbox.Option>
         ))}
       </Listbox.Options>

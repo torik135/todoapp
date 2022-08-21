@@ -24,7 +24,7 @@ function Activity() {
   const getActivity = async () => {
     const data = await Activity.get();
     // setActivity(data.data); //online
-    setActivity(data);
+    setActivity(data.data);
 
   };
 
